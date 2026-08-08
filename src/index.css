@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — sourced from the entryway photo */
+  --color-ink: #1a1a1a; /* deep black / near-black */
+  --color-greige: #c9beaf; /* warm greige / taupe */
+  --color-ivory: #f3eee6; /* soft ivory / cream */
+  --color-olive: #5c6242; /* olive green accent */
+  --color-olive-dark: #464a33;
+  --color-brass: #b08d57; /* brass / warm gold accent */
+  --color-brass-light: #c7a878;
+  --color-wood: #b79b7c; /* warm wood — photography/texture use */
+
+  --font-display: "Anton", "Oswald", "Helvetica Neue", sans-serif;
+  --font-script: "Playfair Display", "Georgia", serif;
+  --font-body: "Inter", "Work Sans", "Helvetica Neue", sans-serif;
+
+  --animate-fade-up: fade-up 0.6s ease-out both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+}
+
+@layer utilities {
+  .font-accent {
+    font-family: var(--font-script);
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* Reserve visual space for photography that hasn't been dropped in yet */
+  .img-slot {
+    background-color: var(--color-greige);
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(26, 26, 26, 0.06) 0px,
+      rgba(26, 26, 26, 0.06) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  }
+}
