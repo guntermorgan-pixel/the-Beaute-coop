@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
-import StickyBookBar from './StickyBookBar.jsx'
 import LocalBusinessSchema from './LocalBusinessSchema.jsx'
 
 export default function Layout() {
@@ -13,7 +12,6 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
-      <StickyBookBar />
     </div>
   )
 }

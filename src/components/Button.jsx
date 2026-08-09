@@ -1,43 +1,41 @@
 import { Link } from 'react-router-dom'
 
 const VARIANTS = {
-  primary: 'bg-ink text-ivory hover:bg-olive-dark active:bg-olive-dark',
-  olive: 'bg-olive text-ivory hover:bg-olive-dark active:bg-olive-dark',
-  brass: 'bg-brass text-ink hover:bg-brass-light active:bg-brass-light',
-  outline: 'bg-transparent text-ink border-2 border-ink hover:bg-ink hover:text-ivory',
-  'outline-light':
-    'bg-transparent text-ivory border-2 border-ivory hover:bg-ivory hover:text-ink',
+  solid: 'border-transparent bg-brass text-ink hover:bg-brass-light',
+  outline: 'border-ivory/40 text-ivory hover:border-ivory hover:bg-ivory/6',
+  dark: 'border-transparent bg-ink text-ivory hover:bg-brass hover:text-ink',
 }
 
 const SIZES = {
-  sm: 'px-4 py-3 text-xs sm:px-6 sm:text-sm',
-  md: 'px-6 py-3 text-sm sm:text-base',
-  lg: 'px-8 py-4 text-base sm:text-lg',
+  sm: 'px-6 py-3 text-[11px]',
+  md: 'px-8 py-4 text-xs',
+  lg: 'px-5 py-[17px] text-xs',
 }
 
 /**
- * Shared CTA button. Renders a react-router <Link> for internal paths,
- * or an <a> for external URLs (e.g. Square booking pages). Sized for
- * thumb-friendly tap targets (min 44px height) per the mobile-first spec.
+ * Shared CTA button matching the approved mockups' .btn system exactly.
+ * Renders a react-router <Link> for internal paths, or an <a> for external
+ * URLs (Square booking pages, mailto:, sms:, tel:).
  */
 export default function Button({
   to,
   href,
   onClick,
-  variant = 'primary',
+  variant = 'solid',
   size = 'md',
   className = '',
   children,
   ...props
 }) {
-  const classes = `inline-flex items-center justify-center gap-2 rounded-full font-display uppercase tracking-wide min-h-11 transition-colors duration-200 ${VARIANTS[variant]} ${SIZES[size]} ${className}`
+  const classes = `inline-block border font-body font-medium uppercase tracking-[0.16em] transition-all duration-300 ${VARIANTS[variant]} ${SIZES[size]} ${className}`
 
   if (href) {
+    const isNav = /^(mailto:|sms:|tel:)/.test(href)
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={isNav ? undefined : '_blank'}
+        rel={isNav ? undefined : 'noopener noreferrer'}
         className={classes}
         {...props}
       >

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Button from './Button.jsx'
+import { assets } from '../data/business.js'
 
 const LINKS = [
   { to: '/', label: 'Home' },
@@ -13,7 +13,6 @@ const LINKS = [
 export default function Nav() {
   const [open, setOpen] = useState(false)
 
-  // Lock body scroll while the mobile menu is open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => {
@@ -22,30 +21,29 @@ export default function Nav() {
   }, [open])
 
   const linkClass = ({ isActive }) =>
-    `font-display text-sm uppercase tracking-wide transition-colors ${
-      isActive ? 'text-brass' : 'text-ivory hover:text-brass'
+    `relative pb-1 font-body text-[12.5px] font-medium uppercase tracking-[0.14em] transition-colors after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-brass after:transition-[width] after:duration-300 hover:after:w-full ${
+      isActive ? 'text-brass' : 'text-ink hover:text-ink'
     }`
 
   return (
-    <header className="sticky top-0 z-50 bg-ink">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
-        <NavLink to="/" className="font-display text-xl text-ivory sm:text-2xl" onClick={() => setOpen(false)}>
-          <span className="font-accent text-brass mr-1 text-lg sm:text-xl">The</span>
-          Beauté Co-op
+    <nav className="sticky top-0 z-50 border-b border-hairline bg-ivory">
+      <div className="mx-auto flex max-w-[1240px] items-center justify-between px-5 py-4 sm:px-10">
+        <NavLink to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+          <img src={assets.logo} alt="The Beaute Co-op logo" className="h-10 w-auto sm:h-13" />
         </NavLink>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <div className="hidden items-center gap-8.5 lg:flex">
           {LINKS.map((link) => (
             <NavLink key={link.to} to={link.to} className={linkClass} end={link.to === '/'}>
               {link.label}
             </NavLink>
           ))}
-        </nav>
-
-        <div className="hidden lg:block">
-          <Button to="/book" variant="brass" size="md">
+          <NavLink
+            to="/book"
+            className="bg-ink px-6 py-2.5 font-body text-xs font-medium uppercase tracking-[0.14em] text-ivory transition-colors hover:bg-brass hover:text-ink"
+          >
             Book Now
-          </Button>
+          </NavLink>
         </div>
 
         <button
@@ -53,44 +51,42 @@ export default function Nav() {
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex h-11 w-11 items-center justify-center text-ivory lg:hidden"
+          className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-7 w-7">
-            {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
-            )}
-          </svg>
+          <span
+            className={`block h-0.5 w-6.5 bg-ink transition-transform ${open ? 'translate-y-2 rotate-45' : ''}`}
+          />
+          <span className={`block h-0.5 w-6.5 bg-ink transition-opacity ${open ? 'opacity-0' : ''}`} />
+          <span
+            className={`block h-0.5 w-6.5 bg-ink transition-transform ${open ? '-translate-y-2 -rotate-45' : ''}`}
+          />
         </button>
       </div>
 
       {open && (
-        <div className="fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-ink px-6 py-8 sm:top-20 lg:hidden">
-          <nav className="flex flex-col gap-6">
-            {LINKS.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === '/'}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `font-display text-2xl uppercase tracking-wide ${
-                    isActive ? 'text-brass' : 'text-ivory'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
-          </nav>
-          <div className="mt-auto pt-8">
-            <Button to="/book" variant="brass" size="lg" className="w-full" onClick={() => setOpen(false)}>
-              Book Now
-            </Button>
-          </div>
+        <div className="fixed inset-x-0 top-[70px] bottom-0 z-40 flex flex-col gap-6 overflow-y-auto bg-ivory px-5 py-8 lg:hidden">
+          {LINKS.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.to === '/'}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `font-display text-xl ${isActive ? 'text-brass' : 'text-ink'}`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+          <NavLink
+            to="/book"
+            onClick={() => setOpen(false)}
+            className="mt-2 inline-block w-fit bg-ink px-6 py-3 font-body text-xs font-medium uppercase tracking-[0.14em] text-ivory"
+          >
+            Book Now
+          </NavLink>
         </div>
       )}
-    </header>
+    </nav>
   )
 }

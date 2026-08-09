@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.beautecoop.com/sitemap.xml
+Sitemap: https://www.thebeautecoop.com/sitemap.xml

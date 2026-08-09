@@ -1,7 +1,7 @@
-# The Beauté Co-op — Marketing Site
+# The Beaute Co-op — Marketing Site
 
-React + Vite + Tailwind CSS marketing site for The Beauté Co-op, a salon suite
-in Arlington, VA.
+React + Vite + Tailwind CSS marketing site for The Beaute Co-op, a salon suite
+in Arlington, VA. Built to match the approved design mockups exactly.
 
 ## Stack
 
@@ -21,31 +21,52 @@ npm run dev
 
 ```
 src/
-  components/   Nav, Footer, Layout, Button, ImageSlot, BookingButton, SEO, ...
+  components/   Nav, Footer, Layout, Button, Eyebrow, Reveal, Marquee,
+                InstagramIcon, SEO, LocalBusinessSchema
   data/
     business.js   Single source of truth for business info + per-category
-                   artist data (name, bio, logo, Square booking link/embed).
-                   Update this file to change contact info, hours, or an
-                   artist's booking setup — components read from here.
+                   artist data (name, bio, Square booking link). Update this
+                   file to change contact info, hours, or a booking link —
+                   every component reads from here.
   pages/        Home, About, Services, BookNow, Join, Contact
+public/
+  images/       Real photography (logo, entryway, artist headshots)
 ```
 
-## Swapping in real content
+## Editing content
 
-- **Copy**: page copy is marked `PLACEHOLDER` inline in each page component —
-  replace directly, no structural changes needed.
-- **Photography**: every image slot uses `<ImageSlot src alt label>`. Pass a
-  real `src` once photos are ready; until then it renders a labeled
-  placeholder at the correct aspect ratio.
-- **Business info**: edit `src/data/business.js` (address, phone, hours,
-  socials, map embed URL).
-- **Booking**: each artist in `src/data/business.js` has a `booking` object —
-  `{ type: 'link', url }` for a Square booking page link, or
-  `{ type: 'embed', embedCode }` for an inline Square widget snippet.
+- **Copy**: written directly into each page component, matching the approved
+  mockups. Edit the JSX to change wording.
+- **Photography**: `public/images/` holds the logo, entryway photo, and
+  artist headshots (extracted from the design mockups). Swap files in place
+  to update photography — filenames are referenced from `assets` and each
+  artist's `photo` field in `src/data/business.js`.
+- **Business info**: edit `src/data/business.js` (address, email, text
+  number, hours, Instagram, map embed URL).
+- **Booking**: each artist's `booking.url` in `src/data/business.js` points
+  at their Square booking page (opens in a new tab). If an artist later
+  provides an embeddable Square widget instead, that's a straightforward
+  swap in `Button`/the relevant page — no other changes needed.
+- **Artist bios**: currently short placeholder-style bios pulled from the
+  design mockups — flagged as not-yet-final in the source copy doc, so
+  double check these with each artist before launch.
 - **Domain**: `SITE_URL` placeholders in `src/components/SEO.jsx` and
   `src/components/LocalBusinessSchema.jsx`, plus `public/robots.txt` and
-  `public/sitemap.xml`, currently point at `https://www.beautecoop.com` —
-  update once the real domain is set.
+  `public/sitemap.xml`, currently point at `https://www.thebeautecoop.com` —
+  update once the real domain is confirmed, and keep it consistent with the
+  Google Business Profile.
+
+## Design system
+
+- **Colors**: ink `#0f0d0a`, ink-soft `#221f19`, greige `#c9beab`,
+  greige-deep `#b7a992`, ivory `#f6f2ea`, olive `#4f5738`,
+  olive-light `#7c8459`, brass `#a67c4d`, brass-light `#dcc6a0` — all
+  defined as Tailwind theme tokens in `src/index.css`.
+- **Type**: Anton (headlines), Fraunces italic (pull-quotes/accent copy),
+  Beau Rivage (script flourishes), Jost (body + UI labels).
+- **Motifs**: `.grain` (SVG turbulence noise overlay on dark sections),
+  `<Reveal>` (fade-up-on-scroll, respects `prefers-reduced-motion`),
+  `<Marquee>` (infinite service ticker on Home).
 
 ## SEO notes
 
