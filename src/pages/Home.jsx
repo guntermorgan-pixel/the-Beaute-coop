@@ -41,6 +41,8 @@ export default function Home() {
             src={assets.entryway}
             alt="The Beaute Co-op entryway and reception in Arlington, VA"
             className="h-full w-full object-cover object-[center_20%] saturate-[1.05]"
+            loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-ink)_0%,transparent_25%)] lg:bg-[linear-gradient(90deg,var(--color-ink)_0%,transparent_12%)]" />
           <div className="absolute inset-7 left-0 hidden border border-ivory/35 lg:block" />
@@ -79,6 +81,7 @@ export default function Home() {
                   <img
                     src={assets.entryway}
                     alt="Inside The Beaute Co-op salon suite"
+                    loading="lazy"
                     className="h-full w-full object-cover opacity-82"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,13,10,0.1)_0%,rgba(15,13,10,0.75)_100%)]" />
@@ -145,6 +148,7 @@ export default function Home() {
           <img
             src={assets.entryway}
             alt="Inside The Beaute Co-op salon suite in Arlington, VA"
+            loading="lazy"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-ink)_5%,rgba(23,20,16,0.35)_55%,rgba(23,20,16,0.15)_100%)]" />

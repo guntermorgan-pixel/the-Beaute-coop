@@ -1,10 +1,10 @@
 import { Helmet } from 'react-helmet-async'
 
-const SITE_URL = 'https://www.thebeautecoop.com' // PLACEHOLDER — replace with real domain once live
+const SITE_URL = 'https://www.thebeautecoop.com'
 
 export default function SEO({ title, description, path = '/', image }) {
   const url = `${SITE_URL}${path}`
-  const ogImage = image ?? `${SITE_URL}/og-image.jpg`
+  const ogImage = image ?? `${SITE_URL}/images/entryway.jpg`
 
   return (
     <Helmet>

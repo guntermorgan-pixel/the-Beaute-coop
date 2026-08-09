@@ -32,7 +32,12 @@ function ServiceRow({ category, flip }) {
 
       <div className="relative border border-hairline bg-ivory p-11 before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:bg-brass">
         <div className="mb-5.5 h-19 w-19 overflow-hidden rounded-full outline outline-brass outline-offset-[5px]">
-          <img src={artist.photo} alt={artist.name} className="h-full w-full object-cover" />
+          <img
+            src={artist.photo}
+            alt={`${artist.name} of ${artist.businessName}, ${category.name.toLowerCase()} specialist at The Beaute Co-op in Arlington, VA`}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
         </div>
         <div className="font-display text-[21px]">{artist.name}</div>
         <div className="font-serif-italic mb-4 text-[15px] text-brass">{artist.businessName}</div>

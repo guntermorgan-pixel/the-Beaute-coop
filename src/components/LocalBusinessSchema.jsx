@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { business } from '../data/business.js'
 
-const SITE_URL = 'https://www.thebeautecoop.com' // PLACEHOLDER — replace with real domain once live
+const SITE_URL = 'https://www.thebeautecoop.com'
 
 export default function LocalBusinessSchema() {
   const schema = {
@@ -10,6 +10,8 @@ export default function LocalBusinessSchema() {
     '@id': `${SITE_URL}/#business`,
     name: business.name,
     url: SITE_URL,
+    image: `${SITE_URL}/images/entryway.jpg`,
+    telephone: business.textPhone,
     email: business.email,
     address: {
       '@type': 'PostalAddress',

@@ -60,6 +60,7 @@ export default function About() {
               <img
                 src={assets.morganHeadshot}
                 alt="Morgan Gunter, Founder of The Beaute Co-op"
+                loading="lazy"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -116,6 +117,7 @@ export default function About() {
                 <img
                   src={assets.entryway}
                   alt="Inside The Beaute Co-op salon suite"
+                  loading="lazy"
                   className="h-full w-full object-cover"
                 />
               </div>
