@@ -2,6 +2,7 @@ import SEO from '../components/SEO.jsx'
 import Eyebrow from '../components/Eyebrow.jsx'
 import Button from '../components/Button.jsx'
 import Reveal from '../components/Reveal.jsx'
+import LinkButton from '../components/LinkButton.jsx'
 import InstagramIcon from '../components/InstagramIcon.jsx'
 import { categories, comingSoon } from '../data/business.js'
 
@@ -42,26 +43,11 @@ function ServiceRow({ category, flip }) {
         <div className="font-display text-[21px]">{artist.name}</div>
         <div className="font-serif-italic mb-4 text-[15px] text-brass">{artist.businessName}</div>
         <p className="mb-6 text-[14.5px] leading-[1.7] font-light text-ink/65">{artist.bio}</p>
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <a
-            href={artist.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${artist.name} on Instagram`}
-            className="flex h-8.5 w-8.5 items-center justify-center rounded-full border border-hairline text-ink-soft transition-colors hover:border-brass hover:text-brass"
-          >
-            <InstagramIcon />
-          </a>
-          {artist.website && (
-            <a
-              href={artist.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="label border-b border-transparent text-[11.5px] tracking-[0.1em] text-olive transition-colors hover:border-brass hover:text-brass"
-            >
-              Website
-            </a>
-          )}
+        <div className="flex flex-wrap items-center gap-3">
+          <LinkButton href={artist.instagram} icon={<InstagramIcon className="h-3.75 w-3.75" />}>
+            Instagram
+          </LinkButton>
+          {artist.website && <LinkButton href={artist.website}>Website</LinkButton>}
         </div>
       </div>
     </Reveal>

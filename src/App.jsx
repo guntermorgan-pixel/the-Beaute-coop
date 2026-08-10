@@ -4,6 +4,7 @@ import ScrollToTop from './components/ScrollToTop.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Services from './pages/Services.jsx'
+import ArtistPage from './pages/ArtistPage.jsx'
 import BookNow from './pages/BookNow.jsx'
 import Join from './pages/Join.jsx'
 import Contact from './pages/Contact.jsx'
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/artists/:artistSlug" element={<ArtistPage />} />
           <Route path="/book" element={<BookNow />} />
           <Route path="/join" element={<Join />} />
           <Route path="/contact" element={<Contact />} />

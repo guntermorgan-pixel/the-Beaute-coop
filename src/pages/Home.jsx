@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import SEO from '../components/SEO.jsx'
 import Eyebrow from '../components/Eyebrow.jsx'
 import Button from '../components/Button.jsx'
@@ -119,12 +120,12 @@ export default function Home() {
                 <p className="min-h-19 text-[15.5px] leading-[1.7] font-light text-ink/68">
                   {category.homeDescription}
                 </p>
-                <a
-                  href={`/services#${category.slug}`}
+                <Link
+                  to={`/artists/${category.artist.artistSlug}`}
                   className="label mt-6.5 inline-flex items-center gap-2 border-b border-transparent pb-0.75 text-[11.5px] tracking-[0.14em] text-olive transition-colors hover:border-brass hover:text-brass"
                 >
                   Meet {category.artist.name.split(' ')[0]} →
-                </a>
+                </Link>
               </div>
             ))}
           </Reveal>
