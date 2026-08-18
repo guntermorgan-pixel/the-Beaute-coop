@@ -6,32 +6,31 @@
 // and tools that don't execute JS — most social link-preview scrapers,
 // and some search engines — see Home's metadata for every URL.
 //
-// This script serves the built dist/ output locally, visits each known
-// route in a real headless browser, waits for React (and Helmet) to
-// finish rendering, and writes the fully-rendered HTML to a matching
-// dist/<route>/index.html. Vercel serves a real file at that path
-// directly instead of falling back to the SPA rewrite in vercel.json, so
-// crawlers get real per-page content without executing JS — while the
-// same JS bundle reference stays in that HTML, so the page still
-// hydrates into a normal interactive SPA for real visitors.
+// This script renders each known route to an HTML string with
+// react-dom/server (via the SSR bundle built from src/entry-server.jsx —
+// see the "build" script in package.json) and writes the result to a
+// matching dist/<route>/index.html. Vercel serves a real file at that
+// path directly instead of falling back to the SPA rewrite in
+// vercel.json, so crawlers get real per-page content without executing
+// JS — while the same JS bundle reference stays in that HTML, so the
+// page still becomes a normal interactive SPA for real visitors once it
+// loads (src/main.jsx does a plain client render into #root, so it just
+// replaces this static markup rather than hydrating it).
+//
+// Deliberately no headless browser here: an earlier version of this
+// script used Playwright, which needs its own Chromium binary. That
+// broke the Vercel production build, because Vercel installs with
+// NODE_ENV=production, which skips devDependencies entirely — Playwright
+// was never even installed. Rendering with react-dom/server avoids that
+// whole class of problem: no browser binary, no missing shared
+// libraries, no separate download step, just the same React/Router/Helmet
+// stack the app already depends on.
 //
 // No framework migration — this only touches the build step.
 
-import { chromium } from 'playwright'
-import { spawn } from 'node:child_process'
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 
-// Some sandboxed dev environments pin a pre-installed Chromium build at a
-// fixed path (see PLAYWRIGHT_BROWSERS_PATH) that can be a different
-// revision than the one this project's Playwright version expects. Use it
-// only when present; otherwise fall back to Playwright's normal resolution
-// (the standard behavior real build environments like Vercel rely on).
-const SANDBOX_CHROMIUM = '/opt/pw-browsers/chromium'
-const launchOptions = existsSync(SANDBOX_CHROMIUM) ? { executablePath: SANDBOX_CHROMIUM } : {}
-
-const PORT = 4321
-const BASE_URL = `http://localhost:${PORT}`
 const ROUTES = [
   '/',
   '/about',
@@ -45,75 +44,39 @@ const ROUTES = [
   '/artists/anna',
 ]
 
-function waitForServer(url, timeoutMs = 15000) {
-  const start = Date.now()
-  return new Promise((resolve, reject) => {
-    const tryFetch = async () => {
-      try {
-        const res = await fetch(url)
-        if (res.ok) return resolve()
-      } catch {
-        // server not ready yet
-      }
-      if (Date.now() - start > timeoutMs) return reject(new Error('vite preview server did not start in time'))
-      setTimeout(tryFetch, 200)
-    }
-    tryFetch()
-  })
+function findSsrEntry() {
+  const dir = path.resolve('dist-ssr')
+  const file = readdirSync(dir).find((f) => f.endsWith('.js'))
+  if (!file) throw new Error(`No SSR bundle found in ${dir} — did the SSR build run?`)
+  return path.join(dir, file)
 }
 
 async function main() {
-  // Spawn the local vite binary directly (not via npx) so `server.kill()`
-  // terminates the actual preview server instead of an npx wrapper process,
-  // which can leave the real child running as an orphan.
-  const viteBin = path.join(process.cwd(), 'node_modules', '.bin', 'vite')
-  const server = spawn(viteBin, ['preview', '--port', String(PORT), '--strictPort'], {
-    stdio: 'inherit',
-  })
+  const { render } = await import(path.resolve(findSsrEntry()))
 
-  const cleanup = () => server.kill('SIGTERM')
-  process.on('exit', cleanup)
+  const template = readFileSync(path.resolve('dist/index.html'), 'utf-8')
 
-  try {
-    await waitForServer(BASE_URL)
+  // Strip the static fallback <title>/<meta name="description"> — every
+  // route below supplies its own via react-helmet-async's static output.
+  const baseTemplate = template
+    .replace(/<title>.*?<\/title>\s*/s, '')
+    .replace(/<meta\s+name="description"[^>]*>\s*/s, '')
 
-    const browser = await chromium.launch(launchOptions)
+  if (!baseTemplate.includes('<div id="root"></div>')) {
+    throw new Error('Could not find <div id="root"></div> in dist/index.html to inject into')
+  }
 
-    // Capture every route's HTML before writing any of it to disk. The
-    // preview server's SPA fallback serves dist/index.html for any route
-    // that doesn't yet have its own file — if we wrote dist/index.html
-    // (route "/") to disk mid-loop, every later route's fallback navigation
-    // would load that already-prerendered, metadata-rich HTML instead of
-    // the clean vite-built shell, and Helmet would append its tags on top
-    // of the static ones already baked in rather than replacing them.
-    const results = []
-    for (const route of ROUTES) {
-      // A fresh context+page per route guarantees no state (Helmet's tag
-      // stack included) leaks over from the previous navigation.
-      const context = await browser.newContext()
-      const page = await context.newPage()
+  for (const route of ROUTES) {
+    const { head, body } = render(route)
 
-      const url = `${BASE_URL}${route}`
-      await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 })
-      // React/Helmet render synchronously on mount; this is just a safety margin.
-      await page.waitForTimeout(150)
+    const outHtml = baseTemplate
+      .replace('</head>', `${head}\n  </head>`)
+      .replace('<div id="root"></div>', `<div id="root">${body}</div>`)
 
-      const html = `<!doctype html>\n${await page.content()}`
-      results.push({ route, html })
-
-      await context.close()
-    }
-
-    await browser.close()
-
-    for (const { route, html } of results) {
-      const outDir = route === '/' ? 'dist' : path.join('dist', route.replace(/^\//, ''))
-      mkdirSync(outDir, { recursive: true })
-      writeFileSync(path.join(outDir, 'index.html'), html)
-      console.log(`Prerendered ${route} -> ${path.join(outDir, 'index.html')}`)
-    }
-  } finally {
-    cleanup()
+    const outDir = route === '/' ? 'dist' : path.join('dist', route.replace(/^\//, ''))
+    mkdirSync(outDir, { recursive: true })
+    writeFileSync(path.join(outDir, 'index.html'), outHtml)
+    console.log(`Prerendered ${route} -> ${path.join(outDir, 'index.html')}`)
   }
 }
 
