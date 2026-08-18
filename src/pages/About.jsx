@@ -101,11 +101,11 @@ export default function About() {
             <div>
               <Eyebrow tone="olive">What That Looks Like</Eyebrow>
               <p className="mt-6.5 mb-5.5 text-[19px] leading-[1.85] font-light text-ink/82">
-                Beaute Co-op is a <strong className="font-medium text-ink">competition-free space</strong>, a
-                home base for beauty pros across every specialty to grow their business{' '}
-                <em>with</em> a community instead of in spite of one. Nails, lash extensions,
-                brow design, skin care, and soon additional service providers, all under one
-                roof, all rooting for each other.
+                Beaute Co-op is a <strong className="font-medium text-ink">competition-free space</strong> in
+                Arlington, VA, a home base for beauty pros across every specialty to grow their
+                business <em>with</em> a community instead of in spite of one. Nails, lash
+                extensions, brow design, skin care, and soon additional service providers, all
+                under one roof, all rooting for each other.
               </p>
               <p className="text-[19px] leading-[1.85] font-light text-ink/82">
                 Your lash client probably needs her nails done too. When artists collaborate

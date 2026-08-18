@@ -78,8 +78,8 @@ export default function Services() {
             One Address.
           </h1>
           <p className="mt-5 max-w-[560px] text-lg leading-[1.75] font-light text-ink/72">
-            Browse what's available inside Beaute Co-op. Each service is handled by a
-            specialist artist, meet them below and book directly.
+            Browse what's available inside Beaute Co-op in Arlington, VA. Each service is
+            handled by a specialist artist. Meet them below and book directly.
           </p>
         </Reveal>
       </section>

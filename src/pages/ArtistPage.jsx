@@ -122,7 +122,7 @@ export default function ArtistPage() {
         <Reveal className="mx-auto max-w-[1240px] px-5 sm:px-10">
           <span className="font-script mb-1.5 block text-[34px] text-brass-light">ready when you are</span>
           <h2 className="mx-auto mb-9 max-w-[700px] text-[34px] sm:text-5xl">
-            Book Your {category.ctaLabel} Appointment With {firstName}
+            Book Your {category.ctaLabel} Appointment With {firstName} in Arlington, VA
           </h2>
           <Button href={category.booking.url}>Book With {firstName}</Button>
         </Reveal>
