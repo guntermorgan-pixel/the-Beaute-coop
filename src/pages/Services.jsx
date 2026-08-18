@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import SEO from '../components/SEO.jsx'
 import Eyebrow from '../components/Eyebrow.jsx'
 import Button from '../components/Button.jsx'
@@ -40,7 +41,12 @@ function ServiceRow({ category, flip }) {
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="font-display text-[21px]">{artist.name}</div>
+        <Link
+          to={`/artists/${artist.artistSlug}`}
+          className="font-display block text-[21px] transition-colors hover:text-brass"
+        >
+          {artist.name}
+        </Link>
         <div className="font-serif-italic mb-4 text-[15px] text-brass">{artist.businessName}</div>
         <p className="mb-6 text-[14.5px] leading-[1.7] font-light text-ink/65">{artist.bio}</p>
         <div className="flex flex-wrap items-center gap-3">

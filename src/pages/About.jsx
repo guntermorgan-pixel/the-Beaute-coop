@@ -32,7 +32,7 @@ export default function About() {
     <>
       <SEO
         title="About Us | The Beaute Co-op, Arlington VA"
-        description="Meet the founder behind The Beaute Co-op and learn why this Arlington, VA salon suite was built as a competition-free space for independent beauty professionals."
+        description="Meet the founder behind The Beaute Co-op and learn why this Arlington, VA beauty salon was built as a competition-free space for independent beauty professionals."
         path="/about"
       />
 
@@ -47,7 +47,7 @@ export default function About() {
           </h1>
           <p className="mx-auto mt-5.5 max-w-[560px] text-lg leading-[1.75] font-light text-ink/70">
             The story behind Beaute Co-op, and why we're rewriting what it means to work (and
-            get glammed) in a salon suite.
+            get glammed) in a beauty salon.
           </p>
         </Reveal>
       </section>
@@ -116,7 +116,7 @@ export default function About() {
               <div className="relative h-full w-full overflow-hidden border border-brass-light/40">
                 <img
                   src={assets.entryway}
-                  alt="Inside The Beaute Co-op salon suite"
+                  alt="Inside The Beaute Co-op beauty salon"
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />

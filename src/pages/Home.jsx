@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <SEO
         title="The Beaute Co-op | Nail, Lash, Brow & Skincare Studio in Arlington, VA"
-        description="The Beaute Co-op is a salon suite in Arlington, VA where independent nail, lash extension, brow design, and medical-grade skincare specialists work under one roof. Book your whole beauty routine in one place."
+        description="The Beaute Co-op is a beauty salon in Arlington, VA where independent nail, lash extension, brow design, and medical-grade skincare specialists work under one roof. Book your whole beauty routine in one place."
         path="/"
       />
 
@@ -81,7 +81,7 @@ export default function Home() {
                 <div className="relative h-full w-full overflow-hidden border border-brass-light/40">
                   <img
                     src={assets.entryway}
-                    alt="Inside The Beaute Co-op salon suite"
+                    alt="Inside The Beaute Co-op beauty salon"
                     loading="lazy"
                     className="h-full w-full object-cover opacity-82"
                   />
@@ -148,7 +148,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <img
             src={assets.entryway}
-            alt="Inside The Beaute Co-op salon suite in Arlington, VA"
+            alt="Inside The Beaute Co-op beauty salon in Arlington, VA"
             loading="lazy"
             className="h-full w-full object-cover"
           />

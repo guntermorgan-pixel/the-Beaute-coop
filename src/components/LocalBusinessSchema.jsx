@@ -23,7 +23,7 @@ export default function LocalBusinessSchema() {
     },
     // "By appointment only" doesn't map to a structured opening-hours range,
     // so it's surfaced as a plain description rather than openingHoursSpecification.
-    description: `${business.name} — a salon suite in ${business.address.city}, ${business.address.state} housing independent nail, lash extension, brow design, and medical-grade skincare specialists. ${business.hours}.`,
+    description: `${business.name} is a beauty salon in ${business.address.city}, ${business.address.state} offering nail artistry, lash extensions, brow design, and medical-grade skin care from independent specialists. ${business.hours}.`,
     sameAs: Object.values(business.social),
   }
 

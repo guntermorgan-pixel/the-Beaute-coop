@@ -16,7 +16,7 @@ export default function Contact() {
     <>
       <SEO
         title="Contact Us | The Beaute Co-op, Arlington VA"
-        description="Get in touch with The Beaute Co-op in Arlington, VA — address, hours, email, and directions to our salon suite."
+        description="Get in touch with The Beaute Co-op in Arlington, VA — address, hours, email, and directions to our beauty salon."
         path="/contact"
       />
 

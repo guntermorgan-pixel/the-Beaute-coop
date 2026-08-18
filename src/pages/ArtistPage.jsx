@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import SEO from '../components/SEO.jsx'
+import ArtistPersonSchema from '../components/ArtistPersonSchema.jsx'
 import Eyebrow from '../components/Eyebrow.jsx'
 import Button from '../components/Button.jsx'
 import LinkButton from '../components/LinkButton.jsx'
@@ -24,6 +25,7 @@ export default function ArtistPage() {
         description={`${artist.heroSub} Book directly with ${firstName} at The Beaute Co-op in Arlington, VA.`}
         path={`/artists/${artist.artistSlug}`}
       />
+      <ArtistPersonSchema category={category} />
 
       {/* Hero */}
       <section className="grain grid min-h-[60vh] grid-cols-1 overflow-hidden bg-ink text-ivory lg:min-h-[78vh] lg:grid-cols-2">
@@ -66,7 +68,7 @@ export default function ArtistPage() {
         <div className="relative order-first h-[340px] lg:order-none lg:h-auto">
           <img
             src={artist.photo}
-            alt={`${artist.name}, ${artist.businessName}`}
+            alt={`${artist.name} of ${artist.businessName}, ${category.name.toLowerCase()} specialist at The Beaute Co-op in Arlington, VA`}
             className="h-full w-full object-cover object-[center_20%] saturate-[1.05]"
             loading="eager"
             fetchPriority="high"
@@ -80,7 +82,9 @@ export default function ArtistPage() {
       <section className="bg-ivory py-15 lg:py-25">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-10">
           <Reveal className="max-w-[760px]">
-            <Eyebrow tone="olive">Meet {firstName}</Eyebrow>
+            <Eyebrow as="h2" tone="olive">
+              Meet {firstName}
+            </Eyebrow>
             <div className="mt-9 mb-9 max-h-27.5 border-b border-hairline pb-7.5">
               <img
                 src={artist.logo}

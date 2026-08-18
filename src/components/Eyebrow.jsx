@@ -8,12 +8,12 @@ const TONES = {
  * headline across the site ("Arlington, VA", "Our Story", "Currently
  * Seeking", etc).
  */
-export default function Eyebrow({ tone = 'brass', center = false, className = '', children }) {
+export default function Eyebrow({ as: Tag = 'div', tone = 'brass', center = false, className = '', children }) {
   return (
-    <div
+    <Tag
       className={`label flex items-center gap-3.5 text-[11.5px] tracking-[0.28em] before:h-px before:w-[34px] before:content-[''] ${TONES[tone]} ${center ? 'justify-center' : ''} ${className}`}
     >
       {children}
-    </div>
+    </Tag>
   )
 }
