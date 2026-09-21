@@ -9,7 +9,7 @@ export default function BookNow() {
     <>
       <SEO
         title="Book Now | The Beaute Co-op, Arlington VA"
-        description="Book your nail, lash extension, brow design, or skincare appointment at The Beaute Co-op in Arlington, VA — one tap to each specialist's Square booking page."
+        description="Book your nail, lash extension, brow design, skincare, or waxing appointment at The Beaute Co-op in Arlington, VA. One tap to each specialist's booking page."
         path="/book"
       />
 
@@ -27,7 +27,7 @@ export default function BookNow() {
       <section className="bg-ivory pb-15">
         <Reveal
           as="div"
-          className="mx-auto grid max-w-[1240px] grid-cols-1 gap-px border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4"
+          className="mx-auto grid max-w-[1240px] grid-cols-1 gap-px border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-5"
         >
           {categories.map((category) => (
             <div

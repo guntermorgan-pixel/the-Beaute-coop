@@ -129,9 +129,6 @@ export default function Join() {
           <h2 className="mt-2 mb-2 text-[30px] sm:text-[44px]">Who We're Looking For</h2>
           <div className="my-9 flex flex-wrap gap-4">
             <span className="label border border-brass bg-brass/8 px-6.5 py-3.5 text-[13px] tracking-[0.1em] text-ink">
-              Waxing Specialists
-            </span>
-            <span className="label border border-brass bg-brass/8 px-6.5 py-3.5 text-[13px] tracking-[0.1em] text-ink">
               Massage Therapists
             </span>
           </div>

@@ -42,6 +42,7 @@ const ROUTES = [
   '/artists/morgan',
   '/artists/simone',
   '/artists/anna',
+  '/artists/antoinette',
 ]
 
 function findSsrEntry() {

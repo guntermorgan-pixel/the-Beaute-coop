@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <SEO
         title="The Beaute Co-op | Nail, Lash, Brow & Skincare Studio in Arlington, VA"
-        description="The Beaute Co-op is a beauty salon in Arlington, VA where independent nail, lash extension, brow design, and medical-grade skincare specialists work under one roof. Book your whole beauty routine in one place."
+        description="The Beaute Co-op is a beauty salon in Arlington, VA where independent nail, lash extension, brow design, medical-grade skincare, and waxing specialists work under one roof. Book your whole beauty routine in one place."
         path="/"
       />
 
@@ -109,7 +109,7 @@ export default function Home() {
 
           <Reveal
             as="div"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 [&>*:nth-child(n+2)]:border-t [&>*:nth-child(n+2)]:border-hairline lg:[&>*:nth-child(n+2)]:border-t-0 lg:[&>*:nth-child(n+2)]:border-l"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 [&>*:nth-child(n+2)]:border-t [&>*:nth-child(n+2)]:border-hairline lg:[&>*:nth-child(n+2)]:border-t-0 lg:[&>*:nth-child(n+2)]:border-l"
           >
             {categories.map((category) => (
               <div key={category.slug} className="border-t border-hairline pt-9 lg:pl-7.5 lg:first:pl-0">

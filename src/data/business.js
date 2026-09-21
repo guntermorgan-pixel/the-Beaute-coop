@@ -178,12 +178,49 @@ export const categories = [
       embedCode: null,
     },
   },
+  {
+    slug: 'waxing',
+    index: '05',
+    name: 'Waxing',
+    bookLabel: 'Waxing',
+    shortName: 'Waxing',
+    marqueeLabel: 'WAXING',
+    ctaLabel: 'Waxing',
+    description:
+      'Full-body waxing and brows, delivered with professionalism and genuine care, in a space built to make every client feel comfortable and confident, no matter your age, gender, body type, sexuality, or race.',
+    homeDescription:
+      'Full-body waxing and brows, delivered with professionalism and genuine care.',
+    priceNote: 'Full-Body Waxing · Brows',
+    artist: {
+      artistSlug: 'antoinette',
+      name: 'Antoinette',
+      businessName: 'Refined Beauty Waxing Studio',
+      logo: '/images/refined-beauty-waxing-logo.png',
+      photo: '/images/antoinette-headshot.jpg',
+      bio: 'Licensed Esthetician creating a welcoming, inclusive space where every client feels comfortable and cared for.',
+      heroSub:
+        'Full-body waxing and brows, delivered with professionalism and genuine care, in a space built to make every client feel comfortable and confident.',
+      specialtyTag: 'Licensed Esthetician & Owner',
+      bioLead:
+        "No matter your age, gender, body type, sexuality, or race, you'll always be welcomed here with professionalism and genuine care.",
+      bioBody: [
+        "Antoinette is a Licensed Esthetician and the owner of Refined Beauty Waxing Studio, specializing in full-body waxing and brows. She's built her practice around one core belief: everyone deserves to feel comfortable, confident, and cared for in the chair.",
+        'Passionate about creating a welcoming and inclusive experience, Antoinette approaches every appointment with that same standard of professionalism and genuine care, so you leave feeling your best, every single visit.',
+      ],
+      // PLACEHOLDER — Antoinette's Instagram link isn't provided yet; swap in once received.
+      instagram: null,
+      website: 'https://www.refinedbeautywax.com/',
+    },
+    booking: {
+      // GlossGenius, not Square — the one exception among artists.
+      type: 'link',
+      url: 'https://refinedbeautyva.glossgenius.com/',
+      embedCode: null,
+    },
+  },
 ]
 
-export const comingSoon = [
-  { slug: 'waxing', name: 'Waxing' },
-  { slug: 'massage', name: 'Massage' },
-]
+export const comingSoon = [{ slug: 'massage', name: 'Massage' }]
 
 export const assets = {
   logo: '/images/logo.png',

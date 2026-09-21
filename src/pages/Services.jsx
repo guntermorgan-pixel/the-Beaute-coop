@@ -50,9 +50,11 @@ function ServiceRow({ category, flip }) {
         <div className="font-serif-italic mb-4 text-[15px] text-brass">{artist.businessName}</div>
         <p className="mb-6 text-[14.5px] leading-[1.7] font-light text-ink/65">{artist.bio}</p>
         <div className="flex flex-wrap items-center gap-3">
-          <LinkButton href={artist.instagram} icon={<InstagramIcon className="h-3.75 w-3.75" />}>
-            Instagram
-          </LinkButton>
+          {artist.instagram && (
+            <LinkButton href={artist.instagram} icon={<InstagramIcon className="h-3.75 w-3.75" />}>
+              Instagram
+            </LinkButton>
+          )}
           {artist.website && <LinkButton href={artist.website}>Website</LinkButton>}
         </div>
       </div>
@@ -64,8 +66,8 @@ export default function Services() {
   return (
     <>
       <SEO
-        title="Nails, Lash Extensions, Brow Design & Skincare | The Beaute Co-op, Arlington VA"
-        description="Explore nail artistry, lash extensions, brow design, and medical-grade skincare at The Beaute Co-op in Arlington, VA — meet each independent specialist and book directly."
+        title="Nails, Lash Extensions, Brow Design, Skincare & Waxing | The Beaute Co-op, Arlington VA"
+        description="Explore nail artistry, lash extensions, brow design, medical-grade skincare, and waxing at The Beaute Co-op in Arlington, VA. Meet each independent specialist and book directly."
         path="/services"
       />
 

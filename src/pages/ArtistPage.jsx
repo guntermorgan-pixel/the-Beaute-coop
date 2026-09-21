@@ -51,13 +51,15 @@ export default function ArtistPage() {
             <Button href={category.booking.url}>Book With {firstName}</Button>
           </div>
           <div className="mt-4.5 flex flex-wrap gap-3">
-            <LinkButton
-              href={artist.instagram}
-              tone="light"
-              icon={<InstagramIcon className="h-3.75 w-3.75" />}
-            >
-              Instagram
-            </LinkButton>
+            {artist.instagram && (
+              <LinkButton
+                href={artist.instagram}
+                tone="light"
+                icon={<InstagramIcon className="h-3.75 w-3.75" />}
+              >
+                Instagram
+              </LinkButton>
+            )}
             {artist.website && (
               <LinkButton href={artist.website} tone="light">
                 Website
