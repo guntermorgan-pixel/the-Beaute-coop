@@ -43,6 +43,7 @@ export const categories = [
     homeDescription:
       'Healthy nails first: hand-filed sets and fills, no drills, plus custom nail art for whenever you want to make a statement.',
     priceNote: 'Gel · Gel-X · Builder Gel · Custom Nail Art',
+    bookNote: 'Gel-X, Builder Gel & Nail Designs',
     artist: {
       artistSlug: 'autumn',
       name: 'Autumn de los Reyes',
@@ -78,6 +79,7 @@ export const categories = [
     homeDescription:
       'Precision Brow Architecture, rooted in the pursuit of balance and symmetry.',
     priceNote: 'Dust Brow · Waxing & Tweezing · Brow Lamination',
+    bookNote: 'Dust Brow, Waxing & Tweezing, Brow Lamination',
     artist: {
       artistSlug: 'simone',
       name: 'Simone Fennell',
@@ -115,6 +117,7 @@ export const categories = [
     homeDescription:
       'Facials and treatments backed by real results, not just a nice smell.',
     priceNote: 'Facials · Peels · Treatments',
+    bookNote: 'Facials, Peels & Treatments',
     artist: {
       artistSlug: 'anna',
       name: 'Anna Gibbeck',
@@ -153,6 +156,7 @@ export const categories = [
     homeDescription:
       'Natural-looking enhancements, tailored to your eyes and your lifestyle.',
     priceNote: 'Classic · Hybrid · Volume · Fills',
+    bookNote: 'Classic, Hybrid, Volume & Fills',
     artist: {
       artistSlug: 'morgan',
       name: 'Morgan Gunter',
@@ -191,6 +195,7 @@ export const categories = [
     homeDescription:
       'Full-body waxing and brows, delivered with professionalism and genuine care.',
     priceNote: 'Full-Body Waxing · Brows',
+    bookNote: 'Full-Body Waxing & Brows',
     artist: {
       artistSlug: 'antoinette',
       name: 'Antoinette',

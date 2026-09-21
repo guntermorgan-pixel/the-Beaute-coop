@@ -36,6 +36,9 @@ export default function BookNow() {
             >
               <span className="label text-[11px] tracking-[0.2em] text-brass">{category.name}</span>
               <h3 className="text-[26px]">{category.bookLabel}</h3>
+              <p className="min-h-10 text-[13px] leading-[1.5] font-light text-ink/55">
+                {category.bookNote}
+              </p>
               <Button href={category.booking.url} size="lg" className="mt-1.5 w-full">
                 Book Now
               </Button>
