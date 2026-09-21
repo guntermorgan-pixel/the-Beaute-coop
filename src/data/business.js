@@ -207,8 +207,7 @@ export const categories = [
         "Antoinette is a Licensed Esthetician and the owner of Refined Beauty Waxing Studio, specializing in full-body waxing and brows. She's built her practice around one core belief: everyone deserves to feel comfortable, confident, and cared for in the chair.",
         'Passionate about creating a welcoming and inclusive experience, Antoinette approaches every appointment with that same standard of professionalism and genuine care, so you leave feeling your best, every single visit.',
       ],
-      // PLACEHOLDER — Antoinette's Instagram link isn't provided yet; swap in once received.
-      instagram: null,
+      instagram: 'https://www.instagram.com/refinedbeautyva/',
       website: 'https://www.refinedbeautywax.com/',
     },
     booking: {
