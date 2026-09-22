@@ -6,7 +6,43 @@ export default function Footer() {
   return (
     <footer className="border-t border-hairline bg-ivory pt-15 pb-8">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-10">
-        <div className="flex flex-wrap items-start justify-between gap-10 border-b border-hairline pb-10">
+        <div className="flex flex-col gap-6 border-b border-hairline pb-10 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-[380px]">
+            <h3 className="text-2xl">Stay in the Know</h3>
+            <p className="mt-2.5 font-body text-sm font-light text-ink/60">
+              Get first access to new artists, seasonal offers, and everything happening at the
+              Co-op, straight to your inbox.
+            </p>
+          </div>
+          <div className="w-full lg:max-w-[420px]">
+            <form
+              action="https://squareup.com/outreach/jngJ76/subscribe"
+              method="POST"
+              target="_blank"
+              className="flex flex-col gap-3 sm:flex-row"
+            >
+              <input type="hidden" name="embed" value="1" />
+              <input
+                type="email"
+                name="email_address"
+                required
+                placeholder="Your Email Address"
+                className="w-full border border-hairline bg-ivory px-4.5 py-3 font-body text-sm text-ink placeholder:text-ink/40 focus:border-brass focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="shrink-0 bg-ink px-6 py-3 font-body text-xs font-medium tracking-[0.14em] text-ivory uppercase transition-colors hover:bg-brass hover:text-ink"
+              >
+                Join the Co-op List
+              </button>
+            </form>
+            <p className="mt-2.5 font-body text-xs text-ink/45">
+              No spam, just the good stuff. Unsubscribe anytime.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-start justify-between gap-10 border-b border-hairline pb-10 pt-10">
           <div>
             <img src={assets.logo} alt="The Beaute Co-op logo" className="mb-4 h-15 w-auto" />
             <p className="max-w-[260px] font-body text-sm font-light text-ink/60">
